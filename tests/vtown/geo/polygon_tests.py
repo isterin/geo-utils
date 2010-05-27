@@ -18,3 +18,8 @@ def test_point_in_polygon():
     assert polygon.contains(geo.Point(2,2))
     assert not polygon.contains(geo.Point(5,5))
     
+def test_generate_random_point_in_polygon():
+    polygon = Polygon((0,0), (0,4), (4,4), (4,0), (0,0))
+    point = polygon.random_point()
+    print("POINT: %s" % point)
+    assert polygon.contains(point)

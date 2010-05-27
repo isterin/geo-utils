@@ -2,7 +2,7 @@
 Polygon related utility classes/functions
 """
 import numpy
-from vtown.geo import Point, Line, private
+from vtown.geo import private, Point, Line, BoundingBox
 
 class Polygon(object):
     """Polygon class represents a set of points on a cartesian plane which form a polygon"""
@@ -31,3 +31,10 @@ class Polygon(object):
             if seg_counter.process_segment(line):
                 return True
         return seg_counter.crossings % 2 == 1
+        
+    def random_point(self):
+        bb = BoundingBox(*self.points)
+        while True:
+            p = bb.random_point()
+            if self.contains(p):
+                return p

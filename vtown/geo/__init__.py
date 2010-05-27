@@ -2,6 +2,8 @@
 Geospatial utility classes/functions
 """
 
+import random
+
 class Point(object):
     """Point class represents a point on a cartesian plane"""
     def __init__(self, x, y):
@@ -72,5 +74,36 @@ class Line(object):
                 maxx = p1.x
             if p.x >= minx and p.x <= maxx:
                 return True
-        
+
         return False
+
+class Interval(object):
+    """docstring for Interval"""
+    def __init__(self, x1, x2):
+        self.min = min(x1, x2)
+        self.max = max(x1, x2)
+        
+    def random_point(self):
+        return random.uniform(self.min, self.max)
+
+class BoundingBox(object):
+    
+    def __init__(self, *points):
+        """docstring for __init__"""
+        xmin = ymin = float('inf')
+        xmax = ymax = float('-inf')
+        for p in points:
+            if p.x < xmin: xmin = p.x
+            if p.y < ymin: ymin = p.y
+            if p.x > xmax: xmax = p.x
+            if p.y > ymax: ymax = p.y
+        self.interval_x = Interval(xmin, xmax)
+        self.interval_y = Interval(ymin, ymax)
+        
+    def random_point(self):
+        x = self.interval_x.random_point()
+        y = self.interval_y.random_point()
+        return Point(x, y)
+
+
+
