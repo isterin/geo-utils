@@ -23,3 +23,30 @@ def test_generate_random_point_in_polygon():
     point = polygon.random_point()
     print("POINT: %s" % point)
     assert polygon.contains(point)
+    
+    polygon = Polygon(  geo.LatLon(42.39321,-82.92114),
+                        geo.LatLon(42.39194,-82.91669),
+                        geo.LatLon(42.39147,-82.91796),
+                        geo.LatLon(42.39090,-82.91974),
+                        geo.LatLon(42.39321,-82.92114))
+                        
+    point = polygon.random_point()
+    print("POINT: %s" % point)
+    assert polygon.contains(point)
+    
+def test_bounding_box_in_relation_to_polygon():
+    polygon = Polygon(  geo.LatLon(42.39321,-82.92114),
+                        geo.LatLon(42.39194,-82.91669),
+                        geo.LatLon(42.39147,-82.91796),
+                        geo.LatLon(42.39090,-82.91974),
+                        geo.LatLon(42.39321,-82.92114))
+    bb = geo.BoundingBox(*polygon.points)
+    for idx in range(0, 1000):
+        p = bb.random_point()
+        if not polygon.contains(p):
+            print("Generated a point outside of polygon in %s tries. (%s)" % (idx, p))
+            break
+    else:
+        raise AssertionError("Couldn't generate an out of polygon point within a bounding box.  " \
+                             "This doesn't necessarily mean that the code is broken, since it's based on " \
+                             "randomness.  Try to rerun the test or increase the amount of tries.")

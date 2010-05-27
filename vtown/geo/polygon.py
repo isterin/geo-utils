@@ -35,6 +35,7 @@ class Polygon(object):
     def random_point(self):
         bb = BoundingBox(*self.points)
         while True:
+            print("GENERATING RANDOM POINT...")
             p = bb.random_point()
             if self.contains(p):
                 return p
