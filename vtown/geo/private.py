@@ -1,5 +1,8 @@
 import numpy
 
+def det_2x2(mat):
+  return float(mat[0][0]*mat[1][1] - mat[0][1]*mat[1][0])
+
 class SegmentCounter(object):
     
     def __init__(self, point):
@@ -32,7 +35,14 @@ class SegmentCounter(object):
             x2 = p2.x - p.x
             y2 = p2.y - p.y
 
-            det = numpy.linalg.det([[x1, y1], [x2, y2]])
+            det = 0
+            ## det function fails on certain architectures with index out of bounds
+            ## below we try it and it it fails, reserve to a 2x2 easy determinant calculation
+            try:  
+                det = numpy.linalg.det([[x1, y1], [x2, y2]])
+            except:
+                det = det_2x2([[x1, y1], [x2, y2]])
+            
             if det == 0.0:
                 return True
             if y2 < y1:
