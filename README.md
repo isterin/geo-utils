@@ -4,9 +4,10 @@ Currently there are two helpful utility functions here.
 2.  Random point generator.  Right now it performs better if the polygon
     covers a large portion of its bounding box.  The test is performed using
     this algorithm.
-    a.  Generate a [bounding box](http://en.wikipedia.org/wiki/Minimum_bounding_rectangle)
-    b.  Generate a random point within this bounding box
-    c.  Perform a point-in-polygon test on this point.  If the test succeeds, return the point,
+    
+    1.  Generate a [bounding box](http://en.wikipedia.org/wiki/Minimum_bounding_rectangle)
+    2.  Generate a random point within this bounding box
+    3.  Perform a point-in-polygon test on this point.  If the test succeeds, return the point,
         if not loop to step a and perform again.
         
     \*\* If anyone know of a better way to do above, let me know.  I'd love to hear some better ideas
