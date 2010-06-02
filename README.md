@@ -19,22 +19,22 @@ USAGE:
   Point-in-polygon test:
   
   <pre>
-    polygon = Polygon((0,0), (0,4), (4,4), (4,0), (0,0))
-    point = geo.Point(2,2)
-    assert polygon.contains(geo.Point(2,2))
+  polygon = Polygon((0,0), (0,4), (4,4), (4,0), (0,0))
+  point = geo.Point(2,2)
+  assert polygon.contains(geo.Point(2,2))
   </pre>
   
   Random point within a polygon
   
   <pre>
-    polygon = Polygon(  geo.LatLon(42.39321,-82.92114),
-                          geo.LatLon(42.39194,-82.91669),
-                          geo.LatLon(42.39147,-82.91796),
-                          geo.LatLon(42.39090,-82.91974),
-                          geo.LatLon(42.39321,-82.92114))
+  polygon = Polygon(  geo.LatLon(42.39321,-82.92114),
+                        geo.LatLon(42.39194,-82.91669),
+                        geo.LatLon(42.39147,-82.91796),
+                        geo.LatLon(42.39090,-82.91974),
+                        geo.LatLon(42.39321,-82.92114))
 
-    point = polygon.random_point()
-    assert polygon.contains(point)
+  point = polygon.random_point()
+  assert polygon.contains(point)
   </pre>
   
   
