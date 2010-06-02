@@ -36,3 +36,13 @@ USAGE:
     point = polygon.random_point()
     assert polygon.contains(point)
   </pre>
+  
+  
+INSTALLATION:
+  You can install the package either by cloning this repository and running the standard
+  
+    python setup.py install
+    
+  or install from pypi
+  
+    pip install geo-utils
