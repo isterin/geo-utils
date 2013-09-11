@@ -3,6 +3,7 @@ Geospatial utility classes/functions
 """
 
 import random
+from vtown.geo.algs import haversine
 
 class Point(object):
     """Point class represents a point on a cartesian plane"""
@@ -55,6 +56,10 @@ class LatLon(Point):
     
     def __str__(self):
         return  "%s (lat=%f, lon=%f)" % (self.__class__.__name__, self.lat, self.lon)
+
+    def distance(self, latlon, alg=haversine):
+        return alg(self, latlon)
+
 
 class Line(object):
     def __init__(self, point1, point2):
